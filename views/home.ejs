@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("./partials/head") %>
+    <title>Homepage</title>
+    <style>
+        .card-img-top {
+            object-fit: cover;
+            height: 100px;
+        }
+        .card-title {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-top: 10px;
+        }
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+        .card h5, .card p, .card a {
+            margin-bottom: 0.5rem;
+        }
+        .card .btn {
+            align-self: center;
+        }
+        .card-text {
+            flex-grow: 1;
+        }
+    </style>
+</head>
+<body>
+    <%- include("./partials/nav") %>
+
+    <div class="container mt-3">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+            <% blogs.forEach(blog => { %>
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="<%= blog.coverImageURL %>" class="card-img-top" alt="Cover Image">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= blog.title %></h5>
+                            <p class="card-text"><%= blog.body.slice(0, 100) %>...</p>
+                            <a href="/blog/<%= blog._id %>" class="btn btn-primary">View</a>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+
+    <%- include("./partials/script") %>
+</body>
+</html>
